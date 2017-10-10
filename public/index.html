@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Witcher Log</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link href="/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Witcher Chat!</h1>
+    </div>
+    <div id="witcher-chat">
+      <div class="container" id="chat-window">
+        <div id="output"></div>
+      </div>
+      <input id="handle" type="text" placeholder="Handle" />
+      <input id="message" type="text" placeholder="Message" />
+      <button id="send">Send</button>
+    </div>
+  </div>
+  <script src="/js/chat.js"></script>
+</body>
+
+</html>

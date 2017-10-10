@@ -1,0 +1,53 @@
+html {}
+
+body {
+  margin: 0 auto;
+  background-image: url(http://localhost:4000/img/witcher.jpg) no-repeat center center fixed;
+}
+
+#witcher-chat {
+  max-width: 600px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.page-header {
+  padding-top: 10px;
+}
+
+#chat-window {
+  height: 600px;
+  overflow: auto;
+  background: #f9f9f9;
+}
+
+#output p {
+  padding: 15px 0px;
+  margin: 0 20px;
+  border-bottom: 1px solid black;
+}
+
+#feedback p {
+  color: #aaa;
+  padding: 15px 0px;
+  margin: 0 20px;
+}
+
+label {
+  box-sizing: border-box;
+  display: block;
+  padding: 10px 20px;
+}
+
+input {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  background: #eee;
+  border: 0;
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 1px #f9f9f9;
+  font-size: 16px;
+}
