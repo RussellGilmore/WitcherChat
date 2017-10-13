@@ -19,9 +19,9 @@ body {
 }
 
 #chat-window {
-  height: 600px;
+  height: 550px;
   overflow: auto;
-  background: #f9f9f9;
+  background: #868e96;
 }
 
 #output p {
@@ -45,7 +45,6 @@ label {
 input {
   padding: 10px 20px;
   box-sizing: border-box;
-  background: #eee;
   border: 0;
   display: block;
   width: 100%;
@@ -55,6 +54,19 @@ input {
 }
 
 img{
+  height: 25%;
+  width : 25%;
   margin : 0 auto;
   display:block;
+}
+
+.panel-body{
+  background: white;
+}
+
+button{
+  padding: 5px,5px,5px,5px;
+}
+.btn.btn-secondary{
+
 }
