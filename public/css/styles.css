@@ -2,7 +2,10 @@ html {}
 
 body {
   margin: 0 auto;
-  background-image: url(http://localhost:4000/img/witcher.jpg) no-repeat center center fixed;
+  background-image: url(http://localhost:4000/img/witcher.jpg);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-color: black;
 }
 
 #witcher-chat {
