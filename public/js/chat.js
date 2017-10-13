@@ -1,19 +1,33 @@
-var socket = io.connect('http://localhost:4000');
+angular.module('witcherApp', [])
+  .controller('WitcherController', ["$scope", WitcherController]);
 
-var message = document.getElementById('message');
-var handle = document.getElementById('handle');
-var btn = document.getElementById('send');
-var output = document.getElementById('output');
+function WitcherController($scope) {
+  var self = this;
 
-// Emit events
-btn.addEventListener('click', function() {
-  socket.emit('chat', {
-    message: message.value,
-    handle: handle.value
+  self.socket = io.connect('/');
+
+  self.handle = "";
+  self.message = "";
+  self.output = [];
+
+  self.submit = function() {
+    if (!self.message) {
+      return;
+    }
+    self.socket.emit('chat', {
+      message: self.message,
+      handle: self.handle
+    });
+    self.message = "";
+  };
+
+  self.socket.on('chat', function(data) {
+    $scope.$apply(function($scope) {
+      var newMessage = {
+        handle: data.handle,
+        message: data.message
+      };
+      self.output.push(newMessage);
+    });
   });
-  message.value = "";
-});
-
-socket.on('chat', function(data) {
-  output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
-});
+}
