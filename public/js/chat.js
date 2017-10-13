@@ -1,10 +1,11 @@
 angular.module('witcherApp', [])
-  .controller('WitcherController', ["$scope", WitcherController]);
+  .service('WitcherConnectService', WitcherConnectService)
+  .controller('WitcherController', ["$scope", 'WitcherConnectService', WitcherController]);
 
-function WitcherController($scope) {
+function WitcherController($scope, service) {
   var self = this;
-
-  self.socket = io.connect('/');
+  self.service = service;
+    //self.socket = io.connect('/');
 
   self.handle = "";
   self.message = "";
@@ -14,20 +15,36 @@ function WitcherController($scope) {
     if (!self.message) {
       return;
     }
-    self.socket.emit('chat', {
-      message: self.message,
-      handle: self.handle
-    });
+    self.service.send(self.message, self.handle);
     self.message = "";
   };
 
-  self.socket.on('chat', function(data) {
-    $scope.$apply(function($scope) {
-      var newMessage = {
-        handle: data.handle,
-        message: data.message
-      };
-      self.output.push(newMessage);
-    });
+  self.service.register($scope, (newMessage) => {
+    self.output.push(newMessage);
   });
+}
+
+function WitcherConnectService() {
+  var self = this;
+  //Ref this function
+  self.socket = io.connect('/');
+
+  self.send = function(message, handle) {
+    self.socket.emit('chat', {
+      message: message,
+      handle: handle
+    });
+  };
+
+  self.register = function($scope, cb) {
+    self.socket.on('chat', function(data) {
+      $scope.$apply(function() {
+        var newMessage = {
+          handle: data.handle,
+          message: data.message
+        };
+        cb(newMessage);
+      });
+    });
+  };
 }
